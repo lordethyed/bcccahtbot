@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        import TelegramBot from "node-telegram-bot-api";
+
+// const token = '5011224347:AAHZP_PtG0PzBeP35PEMpw9wwjVlyecb47w';  //delivery
+const token = '5913177870:AAFgq7r9Wlr4LYyy5cE0pMp-lJ7kt5T2ISY'; //sbook
+
+const webAppUrl = 'https://www.bcc.kz/kartakarta/'
+
+const bot = new TelegramBot(token, {polling: true});
+// TelegramBot = require("node-telegram-bot-apxi");
+
+function scrollElement(){
+  var element = document.getElementsByClassName("MuiFormControlLabel-root");
+  element.scrollIntoView();
+ }
+
+
+bot.on('message',  async (msg) => {
+  const chatId = msg.chat.id;
+  const text = msg.text;
+
+  if(text === 'Открыть карту нашего банка'){
+    await bot.sendMessage(chatId,'Заходи на сайт по кнопке ниже',{
+      reply_markup:{
+        inline_keyboard:[
+          [{text: "Open Card", web_app:{url: webAppUrl}}],
+        ]
+
+      }
+      // .then (scrollElement())
+    })
+  }
+
+});
+    </script>
+</body>
+</html>

@@ -78,6 +78,7 @@ async def help_answers(mes: Message):
                     operator_id = int(str(res.fetchone())[1:-2])
                     conn.commit()
                     conn.close()
+                    await mes.answer('Сізді оператормен 1 минут ішінде қосылады\nМы подключаем вас с оператором в течении 1 минуты')
                     await bot.send_message(chat_id=operator_id,
                                            text=f'We are connecting you with @{mes.from_user.username}')
                 except Exception as e:
